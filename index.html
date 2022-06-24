@@ -246,6 +246,57 @@
 
     </section>
 
+
+
+
+ <section class="covid-tarcker">
+
+
+        <div class="container">
+            <h1 class="text-center mt-5">Covid-19 live data!</h1>
+        <br>
+        <br>
+        
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Total cases</th>
+                    <th scope="col">Total deaths</th>
+                    <th scope="col">New confirmed</th>
+                    <th scope="col">New deaths</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                   <tr id="data">
+        
+                   </tr>
+                  
+                </tbody>
+              </table>
+              <div class="d-grid gap-2">
+                <button onclick="refreshData()" class="btn btn-danger" type="button">Refresh data</button>
+              </div>
+             
+        </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--<scetion class="footer">
 <div class="container">
 <div class="d-flex flex-wrap justify-content-center text-center text-sm-start">
@@ -269,6 +320,61 @@
 
    
     <script src="js/script.js"></script>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    
+        init()
+    
+        function init(){
+            var url="https://api.covid19api.com/summary"
+            var data=''
+    
+            $.get(url,function(data){
+                console.log(data.Global);
+    
+    
+                data= `
+                  <td>${data.Global.TotalConfirmed}</td>
+                  <td>${data.Global.TotalDeaths}</td>
+                  <td>${data.Global.NewConfirmed}</td>
+                  <td>${data.Global.NewDeaths}</td>
+    
+    
+    
+                `
+    
+                $("#data").html(data);
+            })
+        }
+    function refreshData(){
+        clearData()
+        init()
+    }
+    function clearData(){
+        $("data").empty()
+        
+    }
+    
+    
+    
+    
+    
+     
+    </script>
+
+
+
+
+
+
+
+
+
 
 
 
